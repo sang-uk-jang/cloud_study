@@ -10,15 +10,17 @@ https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/using-regions-availabi
 
 https://aws.amazon.com/ko/about-aws/global-infrastructure/regions_az/
 
+https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html?
+
 </details>
 
 ### 무엇인가?
 
-Region : AWS 인프라를 지리적으로 나누어 배포한것을 의미, 일반적으로 사용자는 AWS region 선택 시 가장 가까운 region을 선택함
+Region : AWS 인프라를 지리적으로 나누어 배포한것을 의미, 일반적으로 사용자는 AWS region 선택 시 가장 가까운 region을 선택함(서로 분리된 지리적 영역)
 
 => AWS가 실제 데이터 센터를 배치해 서비스를 제공하는 지리적 지역
 
-region 내부에는 Availability Zone가 또 있다.
+region 내부에는 Availability Zone가 또 있다.(region내부에 존재하는 서로 독립된 위치)
 
 Availability Zone : 각 region내에 격리된 위치
 
@@ -52,7 +54,58 @@ Availability Zone
 
 > Region는 데이터 센터가 있는 지리적 위치, Availability Zone은 그 안에서 사용할 수 있는 영역
 
+## Local Zone
 
+<details>
+<summary>
+참고자료
+</summary>
+
+https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html?
+
+</details>
+
+
+### 무엇인가?
+Region보다 최종 사용자에게 더 가까운 위치에 AWS 컴퓨팅, 리소스 자원을 배치하기 위한 인프라
+
+### 왜 사용하는가?
+1. 저지연 애플리케이션(Run low-latency applications at the edge)
+2. 하이브리드 클라우드 마이그레이션을 쉽게 하는 것(Simplify hybrid cloud migrations) => 회사 자체의 DB에서 AWS region으로 옮기려고 할 때, Local zone를 써서 천천히 옮긴다
+3. 데이터가 특정 지역에 있어야 하는 요구사항을 지킨다(Data Residency)
+
+### 장점
+위와 동일
+
+
+### 단점
+1. 지원하는 AWS서비스가 제한적일 수 있다.
+2. 비용이 region과 다를 수 있다
+
+### 핵심
+> 사용자와 더 가까운 위치에 AWS 컴퓨팅 자원을 배치해서 지연시간을 줄이는 것
+
+
+## 학습 주제
+
+<details>
+<summary>
+참고자료
+</summary>
+참고 사이트
+
+</details>
+
+
+### 무엇인가?
+
+### 왜 사용하는가?
+
+### 장점
+
+### 단점
+
+### 핵심
 
 ## Identity and Access Management
 
@@ -169,7 +222,7 @@ EC2를 사용하여 실제로 만든 가상 컴퓨터 한대
 
 >  EC2 Instance는 필요할 때 빠르게 생성해서 사용하는 가상 서버이다.
 
-## EBS
+## EBS(Elastic block storage)
 
 <details>
 <summary>
@@ -200,33 +253,45 @@ EC2의 데이터는 서버가 재시작되거나 교체되는 상황에서도 �
 
 >  EC2에 연결해서 사용하는 가상 하드디스크
 
-## S3
+## S3(Simple Storage Service)
 
 <details>
 <summary>
 참고자료
 </summary>
-https://docs.aws.amazon.com/ebs/
+https://docs.aws.amazon.com/s3/
 
 </details>
 
 ### 무엇인가?
 
-EC2에 연결해서 사용하는 가상 하드디스크
+이미지, 영상, 문서, 백업 파일같은 객체를 저장하는 대용량 스토리지
+
+S3는 파일을 Bucket에 저장을 한다.
+
+Bucket: 파일을 담는 큰 저장 공간
+
+Object: 실제 저장되는 파일 
+
+Key: 파일을 구분하는 이름/경로
 
 ### 왜 사용하는가?
-EC2의 데이터는 서버가 재시작되거나 교체되는 상황에서도 지속적으로 보관을 해야되기 때문
+서버와 파일 저장 공간을 분리하기 위해서
 
 ### 장점
 
-- 저장용량을 비교적 쉽게 늘릴 수 있다.
-- 스냅샷으로 백업이 가능하다
+- 매우 많은 데이터 저장가능
+- 높은 내구성
 
 
 ### 단점
 
-- 용량과 성능에 따라 비용이 발생한다.
+- 사용량에 따라 저장 및 데이터 전송 비용 발생
+
+### EBS와 차이점
+EBS : 블록 스토리지 + EC2에 붙여서 사용
+S3 : 객체 스토리지 + 서버와 독립적임
 
 ### 핵심
 
->  EC2에 연결해서 사용하는 가상 하드디스크
+>  S3는 AWS에서 이미지, 영상, 문서 등의 파일을 저장하는 객체 스토리지이다.
